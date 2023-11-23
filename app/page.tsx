@@ -17,7 +17,7 @@ export default function Home() {
         </div>
         <div>
           <Link
-            href="/signup"
+            href="/singup"
             className=" bg-slate-900 my-4 p-3 rounded-lg block"
           >
             Sign Up
