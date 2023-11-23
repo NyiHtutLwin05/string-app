@@ -12,7 +12,7 @@ async function loadFakeData(numUser: number = 10) {
     await client.query("begin");
     for (let i = 0; i < numUser; i++) {
       const saltRounds = 10;
-      const hash = await bcrypt.hash("string123", saltRounds);
+      const hash = await bcrypt.hash("strings123", saltRounds);
       await client.query(
         "insert into public.users (username, password, avatar) values ($1,$2,$3)",
         [faker.internet.userName(), hash, faker.image.avatar()]
@@ -37,7 +37,7 @@ async function loadFakeData(numUser: number = 10) {
         if (row1.id != row2.id) {
           if (Math.random() > 0.5) {
             await client.query(
-              "insert into follows (user_id,follower_id) values ($1,$2)",
+              "insert into follows (user_id, follower_id) values ($1,$2)",
               [row1.id, row2.id]
             );
           }
@@ -56,4 +56,4 @@ async function loadFakeData(numUser: number = 10) {
 const numUser = parseInt(process.argv[2]) || 10;
 console.log(`loading ${numUser} fake users.`);
 
-loadFakeData();
+loadFakeData(numUser);
